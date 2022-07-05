@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bloc_learn/counter_bloc/counter_bloc.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -30,11 +31,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _increment() {
+  Future<void> _increment() async {
     BlocOverrides.runZoned(
       () {
-        CounterCubit()
-          ..increment()
+        CounterBloc()
+          ..add(CounterIncrementPressed())
           ..close();
       },
       blocObserver: SimpleBlocObserver(),
@@ -47,44 +48,12 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            _increment();
+          onPressed: () async {
+            await _increment();
           },
           child: const Text("data"),
         ),
       ),
     );
-  }
-}
-
-class CounterCubit extends Cubit<int> {
-  CounterCubit() : super(0);
-
-  void increment() => emit(state + 1);
-
-  @override
-  void onChange(Change<int> change) {
-    super.onChange(change);
-    print(change);
-  }
-
-  @override
-  void onError(Object error, StackTrace stackTrace) {
-    super.onError(error, stackTrace);
-    print('$error, $stackTrace');
-  }
-}
-
-class SimpleBlocObserver extends BlocObserver {
-  @override
-  void onChange(BlocBase bloc, Change change) {
-    super.onChange(bloc, change);
-    print('${bloc.runtimeType} $change');
-  }
-
-  @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    super.onError(bloc, error, stackTrace);
-    print('${bloc.runtimeType} $stackTrace');
   }
 }
