@@ -1,6 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:bloc_learn/counter_bloc/counter_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'counter_bloc/counter_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,43 +18,11 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  Future<void> _increment() async {
-    BlocOverrides.runZoned(
-      () {
-        CounterBloc()
-          ..add(CounterIncrementPressed())
-          ..close();
-      },
-      blocObserver: SimpleBlocObserver(),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            await _increment();
-          },
-          child: const Text("data"),
-        ),
+      home: BlocProvider(
+        create: (_) => CounterBloc(),
+        child: CounterPage(),
       ),
     );
   }
