@@ -1,12 +1,7 @@
 import 'package:bloc_learn/counter/counter_observer.dart';
+import 'package:bloc_learn/flutter_timer/timer_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'counter/counter_app.dart';
 
 void main() {
-  BlocOverrides.runZoned(
-    () => runApp(const CounterApp()),
-    blocObserver: CounterObserver(),
-  );
+  runApp(const TimerApp());
 }
