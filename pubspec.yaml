@@ -37,6 +37,9 @@ dependencies:
   flutter_bloc: ^8.0.0
   bloc: ^8.0.0
   equatable: ^2.0.3
+  stream_transform: ^2.0.0
+  http: ^0.13.4
+  bloc_concurrency: ^0.2.0
 
 dev_dependencies:
   flutter_test:
