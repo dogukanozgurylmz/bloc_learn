@@ -40,6 +40,7 @@ dependencies:
   stream_transform: ^2.0.0
   http: ^0.13.4
   bloc_concurrency: ^0.2.0
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:

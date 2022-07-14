@@ -1,12 +1,17 @@
-import 'package:bloc_learn/infinite_list/infinite_list_app.dart';
+import 'package:bloc_learn/login/view/login_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'infinite_list/simple_bloc_observer.dart';
 
 void main() {
-  BlocOverrides.runZoned(
-    () => runApp(const InfiniteListApp()),
-    blocObserver: SimpleBlocObserver(),
-  );
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: LoginView(),
+    );
+  }
 }
